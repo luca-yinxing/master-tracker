@@ -46,20 +46,19 @@ endif (DOXYGEN_FOUND)
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     enable_testing()
     add_definitions(-DMTK_DEBUG=1)
+
+    # TODO: For windows?
+#if (UNIX)
+#    set(CAMOMILLA_PYTHON "/usr/bin/python3 ${CMAKE_SOURCE_DIR}/src/scripts/camomilla/camomilla")
+
+#    set(CMAKE_CXX_COMPILE_OBJECT "${CMAKE_CXX_COMPILE_OBJECT} 2>&1 | ${CAMOMILLA_PYTHON} -r -d1")
+#    set(CMAKE_C_COMPILE_OBJECT "${CMAKE_CXX_COMPILE_OBJECT} 2>&1 | ${CAMOMILLA_PYTHON} -r -d1")
+#endif()
 endif()
 
 add_compile_options(-Wall) # Enable all compiler warning
 add_compile_options(-pipe) # Use pipes rather than temporary files for communication between the various stages of compilation.
 
-
-
-# TODO: For windows?
-if (UNIX)
-    set(CAMOMILLA_PYTHON "/usr/bin/python3 ${CMAKE_SOURCE_DIR}/src/scripts/camomilla/camomilla")
-
-    set(CMAKE_CXX_COMPILE_OBJECT "${CMAKE_CXX_COMPILE_OBJECT} 2>&1 | ${CAMOMILLA_PYTHON} -r -d1")
-    set(CMAKE_C_COMPILE_OBJECT "${CMAKE_CXX_COMPILE_OBJECT} 2>&1 | ${CAMOMILLA_PYTHON} -r -d1")
-endif()
 
 include_directories(
     ${CMAKE_SOURCE_DIR}/src
