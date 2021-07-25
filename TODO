@@ -1,0 +1,26 @@
+# 14/06/21
+### FIXME: The opponent's hand is not shown
+### FIXME: When the online game ends, the opponent's name is not saved in the database
+### TODO: Shows the latest games played in the deck graphics
+### TODO: Shows the latest games played in the graphics of the main window
+### TODO: Change the map_card structure to a more efficient one than std::map
+### TODO: Check if path found automatically are existing
+### TODO: Check if path is working for MacOS and Windows
+### TODO: Clean up the GameWatcher class
+### TODO: Free the memory of the GUI and HSMNG classes
+### TODO: Improve the overlay when you have multiple displays
+### TODO: Put the opponent's card list before the game starts
+### TODO: Add an update control system
+### TODO: Add a Hearthstone update control system
+### TODO: Add the ability to interface with APIs via Plugins
+### TODO: Add special effects of single cards via Plugins
+### TODO: Manage secrets when played by both GUI and API
+### TODO: Add tests for the HSMNG API
+### FIXME: Check that the polymorphs are working
+### FIXME: Check that the guess the weight is working
+### FIXME: Check that the Ashes of al'ar is working when reborn
+### TODO: Create a bug tracking mode
+### TODO: Add GUI translations
+### TODO: Add a Twitch plugin
+### TODO: Remove QT library from hsmng
+### FIXME: Card added to deck like prime are not insert!

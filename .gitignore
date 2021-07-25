@@ -1,0 +1,8 @@
+# Visual Studio Code Directory
+.vscode/*
+
+# Build Directory
+bin/*
+
+# QtCreator CMake config
+CMakeLists.txt.user
