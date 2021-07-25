@@ -29,6 +29,8 @@
 
 #include <QDateTime>
 
+#include <QVariant>
+
 #ifdef MTK_DEBUG
 #include <QDebug>
 #include <QSqlError>
