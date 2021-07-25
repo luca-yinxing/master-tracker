@@ -29,16 +29,32 @@ set (src_hsrender
 )
 
 set (header_hsrender
+
     context.hpp
-    scene.hpp
+    render_utils.hpp
     renderobj.hpp
+    scene.hpp
+    scenecard.hpp
+    scenecardtile.hpp
 
-    utils.hpp
-
-    obj/cardminion.hpp
+    obj/bannerrace.hpp
+    obj/bannerspell.hpp
+    obj/cardart.hpp
+    obj/cardbannername.hpp
+    obj/cardframe.hpp
+    obj/cardname.hpp
     obj/cardtile.hpp
     obj/center_text.hpp
+    obj/curved_text.hpp
+    obj/elitedragon.hpp
+    obj/gemattack.hpp
+    obj/gemhealth.hpp
+    obj/gemmana.hpp
+    obj/gemrarity.hpp
     obj/linear_gradient.hpp
+    obj/textblock.hpp
+    obj/watermark.hpp
+
 )
 
 add_library(master_tracker_hsrender SHARED ${src_hsrender})
