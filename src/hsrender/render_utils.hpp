@@ -85,7 +85,7 @@ class Coords
 };
 
 struct render_char {
-	char c;
+	QChar c;
 	float w;
 };
 
@@ -145,13 +145,10 @@ calc_chars_width(render_char rc[], size_t len, QFontMetrics& fm)
 
 	for (size_t i = 0; i < len; i++) {
 		rc[i].w = fm.horizontalAdvance(rc[i].c) + 0.05 * em;
-		switch (rc[i].c) {
-		case ' ':
+		if (rc[i].c == ' ') {
 			rc[i].w = 0.2 * em;
-			break;
-		case '\'':
+		} else if (rc[i].c == '\'') {
 			rc[i].w = 0.27 * em;
-			break;
 		}
 	}
 }

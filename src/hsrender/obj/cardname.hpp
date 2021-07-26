@@ -19,6 +19,8 @@
 #define MTK_HSRENDER_CARDNAME_H
 
 #include "../renderobj.hpp"
+#include <codecvt>
+#include <locale>
 
 namespace mtk
 {
@@ -143,7 +145,10 @@ class CardName : public RenderObj
 		card_name_painter.setRenderHint(
 		    QPainter::SmoothPixmapTransform);
 		card_name_painter.setRenderHint(QPainter::TextAntialiasing);
-		size_t name_length = m_text.length();
+		std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> convert;
+
+		std::wstring name_utf16 = convert.from_bytes(m_text);
+		size_t name_length	= name_utf16.length();
 
 		card_name_painter.setPen(QPen(QColor(255, 255, 255)));
 		card_name_painter.setBrush(QColor(255, 255, 255));
@@ -156,7 +161,7 @@ class CardName : public RenderObj
 		render_char render_text[name_length];
 
 		for (size_t i = 0; i < name_length; i++) {
-			render_text[i].c = m_text[i];
+			render_text[i].c = name_utf16[i];
 		}
 
 		QPainterPath path;
@@ -203,7 +208,7 @@ class CardName : public RenderObj
 			left_pos += render_text[i].w;
 
 			path.setFillRule(Qt::WindingFill);
-			path.addText(0, 0, font, QString(render_text[i].c));
+			path.addText(0, 0, font, render_text[i].c);
 
 			card_name_painter.save();
 			card_name_painter.translate(px, py);
