@@ -67,7 +67,7 @@ class BannerRace : public RenderObj
 
 	void render(QPainter& painter) override
 	{
-		if (m_str_texture.empty()) {
+		if (m_str_texture.empty() || m_text.empty()) {
 			return;
 		}
 

@@ -130,6 +130,10 @@ Scene::render()
 				    obj.second->prefill_color());
 			}
 			m_painter.begin(obj.second->pixmap().get());
+			if (m_direct_draw) {
+				m_painter.setCompositionMode(
+				    obj.second->composition());
+			}
 			obj.second->render(m_painter);
 			m_painter.end();
 			if (!m_direct_draw) {

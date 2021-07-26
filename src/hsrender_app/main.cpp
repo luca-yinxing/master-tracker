@@ -518,6 +518,9 @@ main(int argc, char** argv)
 
 	auto start = std::chrono::steady_clock::now();
 
+	// FIXME: Assets folder wants ending /
+	// TODO: Assets folder != "-D" dir?
+
 	if (parser.isSet(opt_tile)) {
 		render_tile(pcard,
 			    assets_folder,
