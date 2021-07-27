@@ -30,6 +30,17 @@ class LinearGradient : public RenderObj
       private:
 	std::map<float, QColor> m_colormap;
 
+	inline static Coords COORDS = {
+		.sx = 10,
+		.sy = 85,
+		.sw = 256,
+		.sh = 59,
+		.dx = 59,
+		.dy = 0,
+		.dw = 256,
+		.dh = 59,
+	};
+
       public:
 	LinearGradient(const std::map<float, QColor>& colormap) noexcept :
 	    m_colormap(colormap)
@@ -47,19 +58,19 @@ class LinearGradient : public RenderObj
 
 	void render(QPainter& painter) override
 	{
-		QLinearGradient gradient(m_coords.dx(),
-					 m_coords.dy(),
-					 m_coords.dw(),
-					 m_coords.dh());
+		QLinearGradient gradient(COORDS.dx(),
+					 COORDS.dy(),
+					 COORDS.dw(),
+					 COORDS.dh());
 		for (auto& step : m_colormap) {
 			gradient.setColorAt(step.first, step.second);
 		}
 		QBrush brush(gradient);
 
-		painter.fillRect(m_coords.dx(),
-				 m_coords.dy(),
-				 m_coords.dw(),
-				 m_coords.dh(),
+		painter.fillRect(COORDS.dx(),
+				 COORDS.dy(),
+				 COORDS.dw(),
+				 COORDS.dh(),
 				 brush);
 	}
 };

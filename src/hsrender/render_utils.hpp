@@ -158,7 +158,8 @@ draw_text_center(QPainter& painter,
 		 const Coords& coords,
 		 const std::string& text,
 		 const QFont& font,
-		 const QPen& pen)
+		 const QPen& pen,
+		 const QColor& fillcolor = Qt::white)
 {
 	QPainterPath path;
 
@@ -178,7 +179,7 @@ draw_text_center(QPainter& painter,
 	path.addText(x, y, font, text.c_str());
 
 	painter.strokePath(path, pen);
-	painter.fillPath(path, QBrush(Qt::white));
+	painter.fillPath(path, fillcolor);
 }
 
 }    // namespace mtk

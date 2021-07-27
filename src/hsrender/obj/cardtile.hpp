@@ -32,18 +32,7 @@ class CardTile : public RenderObj
 		.sy = 85,
 		.sw = 256,
 		.sh = 59,
-		.dx = 0,
-		.dy = 0,
-		.dw = 256,
-		.dh = 59,
-	};
-
-	inline static Coords TILE_COORDS = {
-		.sx = 0,
-		.sy = 0,
-		.sw = 0,
-		.sh = 0,
-		.dx = 0,
+		.dx = 59,
 		.dy = 0,
 		.dw = 256,
 		.dh = 59,
@@ -52,9 +41,9 @@ class CardTile : public RenderObj
 	static constexpr float TILE_SCALE = 0.60f;
 
       public:
-	CardTile(const std::string& cardcode) noexcept : RenderObj(TILE_COORDS)
+	CardTile(const std::string& texture) noexcept
 	{
-		m_str_texture = "img/" + cardcode + ".png";
+		m_str_texture = texture;
 		m_textures.insert({ m_str_texture, nullptr });
 	}
 	CardTile(const CardTile& cpy) noexcept = default;

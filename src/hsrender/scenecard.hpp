@@ -55,6 +55,7 @@ class SceneCard : public Scene
 	static constexpr int CARD_HEIGHT = 1000;
 
       public:
+	// FIXME: Can lead to SEGFAULT if m_card == nullptr
 	SceneCard() noexcept :
 	    Scene(CARD_WIDTH, CARD_HEIGHT, true), m_card(nullptr){};
 	SceneCard(const std::shared_ptr<Card>& card,

@@ -41,7 +41,7 @@ Scene::add_asset(
 			tmp_path = base_dir + asset_file;
 		}
 		std::shared_ptr<QPixmap> ptr =
-		    std::make_shared<QPixmap>(tmp_path.c_str());
+		    std::make_shared<QPixmap>(asset_file.c_str());
 		assets.insert({ asset_file, ptr });
 		asset_pixmap = ptr;
 	}

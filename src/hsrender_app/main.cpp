@@ -64,7 +64,7 @@ render_tile(const std::shared_ptr<Card>& pcard,
 	    int width)
 {
 	std::unique_ptr<SceneCardTile> tile_scene =
-	    std::make_unique<SceneCardTile>();
+	    std::make_unique<SceneCardTile>(pcard, texture_file);
 
 	tile_scene->init();
 

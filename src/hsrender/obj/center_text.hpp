@@ -27,37 +27,45 @@ class CenterText : public RenderObj
       private:
 	std::string m_text;
 	std::string m_fontname;
-	float m_fontsize  = 12.f;
-	float m_linewidth = 1.f;
-	bool m_bold	  = false;
+	float m_fontsize   = 12.f;
+	float m_linewidth  = 1.f;
+	bool m_bold	   = false;
+	QColor m_pencolor  = Qt::black;
+	QColor m_fillcolor = Qt::white;
+	Coords m_text_coords;
 
       public:
 	CenterText(const std::string& text) noexcept : m_text(text) { }
 	CenterText(const std::string& text,
 		   const std::string& fontname,
-		   float fontsize  = 12.f,
-		   float linewidth = 1.f,
-		   bool bold	   = false) noexcept :
+		   float fontsize	   = 12.f,
+		   float linewidth	   = 1.f,
+		   const QColor& pencolor  = Qt::black,
+		   const QColor& fillcolor = Qt::white,
+		   bool bold		   = false) noexcept :
 	    m_text(text),
 	    m_fontname(fontname), m_fontsize(fontsize), m_linewidth(linewidth),
-	    m_bold(bold)
+	    m_pencolor(pencolor), m_fillcolor(fillcolor), m_bold(bold)
 	{
 	}
 
 	CenterText(const std::string& text,
 		   const std::string& fontname,
 		   const Coords& coords,
-		   float fontsize  = 12.f,
-		   float linewidth = 1.f,
-		   bool bold	   = false) noexcept :
-	    m_text(text),
-	    m_fontname(fontname), m_fontsize(fontsize), m_linewidth(linewidth),
-	    m_bold(bold), RenderObj(coords)
+		   float fontsize	   = 12.f,
+		   float linewidth	   = 1.f,
+		   const QColor& pencolor  = Qt::black,
+		   const QColor& fillcolor = Qt::white,
+		   bool bold		   = false) noexcept :
+	    m_text_coords(coords),
+	    m_text(text), m_fontname(fontname), m_fontsize(fontsize),
+	    m_linewidth(linewidth), m_pencolor(pencolor),
+	    m_fillcolor(fillcolor), m_bold(bold)
 	{
 	}
 
 	CenterText(const std::string& text, const Coords& coords) noexcept :
-	    m_text(text), RenderObj(coords)
+	    RenderObj(coords), m_text(text)
 	{
 	}
 
@@ -66,19 +74,32 @@ class CenterText : public RenderObj
 
 	void render(QPainter& painter) override
 	{
+		if (m_text.empty()) {
+			return;
+		}
+
+		painter.setRenderHint(QPainter::Antialiasing);
+		painter.setRenderHint(QPainter::SmoothPixmapTransform);
+		painter.setRenderHint(QPainter::TextAntialiasing);
+
 		QFont font(m_fontname.c_str());
 		// font.setBold(true);
 		// font.setKerning(true);
 		font.setPixelSize(m_fontsize);
 
-		adj_font_size(font, m_text, m_coords.dw() - 10, 12.f);
+		adj_font_size(font, m_text, m_text_coords.dw() - 10, 12.f);
 
-		QPen pen(Qt::black);
+		QPen pen(m_pencolor);
 		pen.setWidthF(m_linewidth);
 		pen.setJoinStyle(Qt::RoundJoin);
 		pen.setCapStyle(Qt::RoundCap);
 
-		draw_text_center(painter, m_coords, m_text, font, pen);
+		draw_text_center(painter,
+				 m_text_coords,
+				 m_text,
+				 font,
+				 pen,
+				 m_fillcolor);
 	}
 };
 }    // namespace mtk
