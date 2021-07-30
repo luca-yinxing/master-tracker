@@ -65,4 +65,48 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/src/core
 )
 
+set (CPACK_PACKAGE_NAME "mtk")
+set (CPACK_GENERATOR "DEB")
+set (CPACK_DEBIAN_PACKAGE_MAINTAINER "Luca Gasperini")
+set (CPACK_PACKAGE_VENDOR "XSoftware")
+set (CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
+set (CPACK_DEB_COMPONENT_INSTALL ON)
+set (CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}")
+set (CPACK_PACKAGE_HOMEPAGE_URL "https://xsoftware.it/")
+include (CPack)
+
+function (add_package TARGET_NAME HEADER_SUBPATH DESCR)
+
+    string(REPLACE "master_tracker_" "" COMPONENT_NAME "${TARGET_NAME}")
+    string(REPLACE "_app" "" COMPONENT_NAME "${COMPONENT_NAME}")
+
+    install(TARGETS "${TARGET_NAME}"
+        RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}"
+        COMPONENT "${COMPONENT_NAME}-app"
+    )
+    install(TARGETS "${TARGET_NAME}"
+        LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+         COMPONENT "${COMPONENT_NAME}-lib"
+    )
+    install(TARGETS "${TARGET_NAME}"
+        PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${HEADER_SUBPATH}"
+        COMPONENT "${COMPONENT_NAME}-dev"
+    )
+
+    cpack_add_component("${COMPONENT_NAME}-app"
+                        DISPLAY_NAME "${TARGET_NAME}-app"
+                        DESCRIPTION "${DESCR}"
+    )
+
+    cpack_add_component("${COMPONENT_NAME}-lib"
+                        DISPLAY_NAME "${TARGET_NAME}-lib"
+                        DESCRIPTION "${DESCR}"
+    )
+
+    cpack_add_component("${COMPONENT_NAME}-dev"
+                        DISPLAY_NAME "${TARGET_NAME}-dev"
+                        DESCRIPTION "${DESCR}"
+    )
+endfunction ()
+
 add_subdirectory(src)

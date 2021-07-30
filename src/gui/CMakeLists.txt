@@ -105,7 +105,4 @@ target_link_libraries(master_tracker_gui # Add linked libraries
     ${X11_LIBRARIES}
 )
 
-install(TARGETS master_tracker_gui
-    PUBLIC_HEADER
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mtk/gui
-)
+add_package(master_tracker_gui "/mtk/gui" "")

@@ -40,4 +40,4 @@ target_link_libraries(hsrender_app
     Qt5::Core
 )
 
-install(TARGETS hsrender_app)
+add_package(hsrender_app "" "")

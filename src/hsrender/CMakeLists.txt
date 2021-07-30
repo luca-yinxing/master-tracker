@@ -60,7 +60,7 @@ set (header_hsrender
 add_library(master_tracker_hsrender SHARED ${src_hsrender})
 
 set_target_properties(master_tracker_hsrender PROPERTIES ENABLE_EXPORTS ON)
-set_target_properties(master_tracker_hsrender PROPERTIES PUBLIC_HEADER "${header_render}")
+set_target_properties(master_tracker_hsrender PROPERTIES PUBLIC_HEADER "${header_hsrender}")
 set_target_properties(master_tracker_hsrender PROPERTIES VERSION "0.1")
 set_target_properties(master_tracker_hsrender PROPERTIES SOVERSION "0")
 
@@ -70,7 +70,4 @@ target_link_libraries(master_tracker_hsrender
     Qt5::Core
 )
 
-install(TARGETS master_tracker_hsrender
-    PUBLIC_HEADER
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mtk/hsrender
-)
+add_package(master_tracker_hsrender "/mtk/hsrender" "")

@@ -45,7 +45,4 @@ set_target_properties(master_tracker_hsdata PROPERTIES PUBLIC_HEADER "${header_h
 set_target_properties(master_tracker_hsdata PROPERTIES VERSION "0.1")
 set_target_properties(master_tracker_hsdata PROPERTIES SOVERSION "0")
 
-install(TARGETS master_tracker_hsdata
-    PUBLIC_HEADER
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mtk/hsdata
-)
+add_package(master_tracker_hsdata "/mtk/hsdata" "")
