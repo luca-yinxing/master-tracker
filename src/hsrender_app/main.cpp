@@ -483,37 +483,37 @@ main(int argc, char** argv)
 	assets_folder = qPrintable(parser.value(opt_asset));
 
 	width = parser.value(opt_width).toInt();
+	/*
+		if (parser.isSet(opt_json) && parser.isSet(opt_download)) {
+			std::string file_json =
+	   qPrintable(parser.value(opt_json)); std::string download_dir =
+			    qPrintable(parser.value(opt_download));
 
-	if (parser.isSet(opt_json) && parser.isSet(opt_download)) {
-		std::string file_json = qPrintable(parser.value(opt_json));
-		std::string download_dir =
-		    qPrintable(parser.value(opt_download));
+			CardMap carddb;
+			CardQuery query;
+			language lang =
+			    conv_string_language(qPrintable(parser.value(opt_lang)));
+			query.lang(lang == INVALID_LANGUAGE ? EN_US : lang);
 
-		CardMap carddb;
-		CardQuery query;
-		language lang =
-		    conv_string_language(qPrintable(parser.value(opt_lang)));
-		query.lang(lang == INVALID_LANGUAGE ? EN_US : lang);
+			if (get_json_carddb(file_json, query, carddb) != EXE_OK)
+	   { return 1;
+			}
+			std::vector<std::string> codelist;
+			carddb.to_codelist(codelist);
 
-		if (get_json_carddb(file_json, query, carddb) != EXE_OK) {
-			return 1;
+			if (os_mkdir(download_dir) != EXE_OK) {
+				return 1;
+			}
+
+			void* curl = init_json_curl();
+			if (download_json_art(curl, download_dir, codelist) !=
+			    codelist.size()) {
+				return 1;
+			}
+
+			free_json_curl(curl);
 		}
-		std::vector<std::string> codelist;
-		carddb.to_codelist(codelist);
-
-		if (os_mkdir(download_dir) != EXE_OK) {
-			return 1;
-		}
-
-		void* curl = init_json_curl();
-		if (download_json_art(curl, download_dir, codelist) !=
-		    codelist.size()) {
-			return 1;
-		}
-
-		free_json_curl(curl);
-	}
-
+	*/
 	print_card_details(pcard);
 
 	auto start = std::chrono::steady_clock::now();
