@@ -63,6 +63,9 @@ class CardMap
 	find_by_code(const std::string& code) const noexcept;
 
 	inline const std::shared_ptr<Card>
+	find_by_id(uint32_t id) const noexcept;
+
+	inline const std::shared_ptr<Card>
 	find_by_name(const std::string& name) const noexcept;
 };
 
@@ -72,6 +75,19 @@ CardMap::find_by_code(const std::string& code) const noexcept
 	// TODO: What if code is multiple -> first element
 	for (auto i = m_map.begin(); i != m_map.end(); i++) {
 		if (i->second->code() == code) {
+			return i->second;
+		}
+	}
+
+	return nullptr;
+}
+
+inline const std::shared_ptr<Card>
+CardMap::find_by_id(uint32_t id) const noexcept
+{
+	// TODO: What if code is multiple -> first element
+	for (auto i = m_map.begin(); i != m_map.end(); i++) {
+		if (i->second->id() == id) {
 			return i->second;
 		}
 	}

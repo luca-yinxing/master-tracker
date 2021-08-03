@@ -15,18 +15,20 @@
 # You should have received a copy of the GNU General Public License
 # along with Master Tracker.  If not, see <http://www.gnu.org/licenses/>.
 
- add_subdirectory(utils)
- add_subdirectory(hsdata)
- add_subdirectory(hsjson)
- add_subdirectory(gui)
- add_subdirectory(plugins)
- add_subdirectory(monospace)
- add_subdirectory(hsms)
- add_subdirectory(hsrender)
- add_subdirectory(hsrender_app)
- add_subdirectory(app)
- add_subdirectory(hsmng)
- add_subdirectory(monospace_app)
- add_subdirectory(tests)
- add_subdirectory(examples)
- add_subdirectory(deckstring)
+find_package(Qt5 COMPONENTS Core REQUIRED)
+
+set (src_deckstring
+    main.cpp
+)
+
+add_definitions(-DVERSION_DECKSTRING_APP="0.1")
+
+add_executable (deckstring_app ${src_deckstring})
+
+target_link_libraries(deckstring_app
+    master_tracker_hsjson
+    master_tracker_hsdata
+    Qt5::Core
+)
+
+add_package(deckstring_app "" "")

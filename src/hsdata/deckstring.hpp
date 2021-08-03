@@ -221,6 +221,8 @@ execode read_deckstring_page(const char* deckstring, Deck& dest) noexcept;
  * \return EXE_OK if success
  */
 execode write_deckstring_page(const Deck& src, std::string& dest) noexcept;
+
+execode write_deckstring_csv(const Deck& src, std::string& dest) noexcept;
 /**
  * \brief Write a deckstring from a Deck object
  *

@@ -30,4 +30,46 @@ Deck::to_card_list(std::vector<std::shared_ptr<Card>>& card_list) noexcept
 	}
 }
 
+void
+Deck::complete_info(const CardMap& cardmap) noexcept
+{
+	for (DeckCard& c : m_cards) {
+		c.ptr(cardmap.find_by_id(c.id()));
+	}
+}
+
+static inline bool
+sort_cost_asc(DeckCard& a, DeckCard& b) noexcept
+{
+	if (a.ptr() == nullptr || b.ptr() == nullptr) {
+		return false;
+	}
+	if (a.ptr()->cost() == b.ptr()->cost()) {
+		return a.ptr()->name().compare(b.ptr()->name()) < 0;
+	}
+	return a.ptr()->cost() < b.ptr()->cost();
+}
+
+static inline bool
+sort_cost_desc(DeckCard& a, DeckCard& b) noexcept
+{
+	if (a.ptr() == nullptr || b.ptr() == nullptr) {
+		return false;
+	}
+	if (a.ptr()->cost() == b.ptr()->cost()) {
+		return a.ptr()->name().compare(b.ptr()->name()) < 0;
+	}
+	return a.ptr()->cost() > b.ptr()->cost();
+}
+
+void
+Deck::sort_cost(bool asc) noexcept
+{
+	if (asc) {
+		std::sort(m_cards.begin(), m_cards.end(), &sort_cost_asc);
+	} else {
+		std::sort(m_cards.begin(), m_cards.end(), &sort_cost_desc);
+	}
+}
+
 }    // namespace mtk

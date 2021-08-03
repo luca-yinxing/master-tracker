@@ -19,6 +19,7 @@
 #define HSDATA_DECK_H
 
 #include "card.hpp"
+#include "cardmap.hpp"
 #include "deckcard.hpp"
 #include "utils/utils.hpp"
 
@@ -117,6 +118,10 @@ class Deck
 
 	void
 	to_card_list(std::vector<std::shared_ptr<Card>>& card_list) noexcept;
+
+	void complete_info(const CardMap& cardmap) noexcept;
+
+	void sort_cost(bool asc = true) noexcept;
 };
 
 }    // namespace mtk
