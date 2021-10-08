@@ -3,7 +3,7 @@
 ## Description
 Hearthstone Master Tracker is a set of programs to read Hearthstone informations like decks, cards, matches, etc... for every platform.
 
-It uses MonoSpace library to read informations about Mono Applications.
+It uses MonoSpace library to read informations about Mono Applications in runtime memory.
 
 ## Authors and acknowledgment
 Luca Gasperini - Mantainer and programmer
